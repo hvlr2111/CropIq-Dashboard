@@ -1,27 +1,22 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useTheme } from 'next-themes';
 import { Sun, Moon } from 'lucide-react';
 
 export default function Header() {
+  const [mounted, setMounted] = useState(false);
   const [currentTime, setCurrentTime] = useState(new Date());
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const { theme, setTheme, resolvedTheme } = useTheme();
 
   useEffect(() => {
+    setMounted(true);
     const timer = setInterval(() => {
       setCurrentTime(new Date());
     }, 1000);
 
     return () => clearInterval(timer);
   }, []);
-
-  useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [isDarkMode]);
 
   const formatTime = (date: Date) => {
     return date.toLocaleTimeString('en-US', {
@@ -39,6 +34,10 @@ export default function Header() {
       month: 'long',
       day: 'numeric'
     });
+  };
+
+  const toggleTheme = () => {
+    setTheme(resolvedTheme === 'dark' ? 'light' : 'dark');
   };
 
   return (
@@ -68,14 +67,18 @@ export default function Header() {
 
             {/* Dark Mode Toggle */}
             <button
-              onClick={() => setIsDarkMode(!isDarkMode)}
-              className="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200"
+              onClick={toggleTheme}
+              className="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200 min-w-[36px] min-h-[36px] flex items-center justify-center"
               aria-label="Toggle dark mode"
             >
-              {isDarkMode ? (
-                <Sun className="h-5 w-5 text-yellow-500" />
+              {mounted ? (
+                resolvedTheme === 'dark' ? (
+                  <Sun className="h-5 w-5 text-yellow-500" />
+                ) : (
+                  <Moon className="h-5 w-5 text-gray-700" />
+                )
               ) : (
-                <Moon className="h-5 w-5 text-gray-700" />
+                <div className="h-5 w-5" /> /* Placeholder to prevent layout shift */
               )}
             </button>
           </div>
