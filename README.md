@@ -5,7 +5,7 @@ A modern, responsive KPI dashboard for precision agriculture that uses IoT field
 ## 🌟 Features
 
 ### 📊 Live Sensor Monitoring
-- **NPK Status**: Real-time nitrogen, phosphorus, and potassium levels with color-coded indicators
+- **NPK Status**: Real-time nitrogen, phosphorus, and potassium levels with intuitive Lucide iconography (TestTube, Sparkles, Hexagon)
 - **Soil Health**: Live moisture %, pH level, and electrical conductivity (EC) readings
 - **Climate Data**: Soil temperature, air temperature, and humidity monitoring
 - **Trend Analysis**: Real-time trend indicators showing changes from previous readings
@@ -23,17 +23,18 @@ A modern, responsive KPI dashboard for precision agriculture that uses IoT field
 - **Interactive Tooltips**: Detailed information on hover
 
 ### 🎨 Modern UI/UX
-- **Dark/Light Mode**: Seamless theme switching with system preference detection
+- **Dark/Light Mode**: Seamless theme switching utilizing Tailwind's custom dark variant logic
+- **Glassmorphism Design**: Sleek, translucent backdrop-blurred cards (`bg-white/40`, `bg-gray-800/40`) with inset gradients
+- **Micro-Animations**: Clean hover highlights, icon scaling, and fluid card lift-up transitions
 - **Responsive Design**: Optimized for desktop and tablet use in field conditions
-- **Glassmorphism Design**: Modern aesthetic with subtle shadows and rounded cards
-- **Agriculture-Inspired Palette**: Emerald greens, earthy tones, and clean colors
+- **Agriculture-Inspired Palette**: Emerald greens, earthy tones, and high-contrast alert hues
 
 ## 🛠️ Tech Stack
 
 - **Framework**: Next.js 16 with TypeScript and App Router
-- **Styling**: Tailwind CSS v4 with custom theme configuration
-- **Charts**: Recharts for interactive data visualization
-- **Icons**: Lucide React for consistent iconography
+- **Styling**: Tailwind CSS v4 featuring PostCSS config and custom UI states
+- **Charts**: Recharts integrated with dynamic frosted-glass tooltips 
+- **Icons**: Lucide React for consistent, scalable iconography
 - **Data Structure**: Firebase Realtime Database compatible JSON format
 
 ## 🚀 Getting Started
