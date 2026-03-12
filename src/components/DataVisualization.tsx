@@ -38,15 +38,22 @@ export default function DataVisualization() {
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
       return (
-        <div className="bg-white dark:bg-gray-800 p-3 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700">
-          <p className="text-sm font-medium text-gray-900 dark:text-white mb-2">
+        <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md p-4 rounded-xl shadow-xl border border-gray-200/50 dark:border-gray-700/50">
+          <p className="text-sm font-bold text-gray-900 dark:text-white mb-3 pb-2 border-b border-gray-200/50 dark:border-gray-700/50">
             {label}
           </p>
-          {payload.map((entry: any, index: number) => (
-            <p key={index} className="text-sm" style={{ color: entry.color }}>
-              {entry.name}: {entry.value?.toFixed(1)}{entry.dataKey === 'pH' ? '' : entry.dataKey === 'ec' ? ' mS/cm' : entry.dataKey.includes('temp') ? '°C' : entry.dataKey.includes('moisture') ? '%' : ' mg/kg'}
-            </p>
-          ))}
+          <div className="space-y-1">
+            {payload.map((entry: any, index: number) => (
+              <div key={index} className="flex items-center justify-between space-x-4">
+                <span className="text-sm font-medium" style={{ color: entry.color }}>
+                  {entry.name}
+                </span>
+                <span className="text-sm font-bold text-gray-900 dark:text-white">
+                  {entry.value?.toFixed(1)}{entry.dataKey === 'pH' ? '' : entry.dataKey === 'ec' ? ' mS/cm' : entry.dataKey.includes('temp') ? '°C' : entry.dataKey.includes('moisture') ? '%' : ' mg/kg'}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
       );
     }
@@ -56,7 +63,8 @@ export default function DataVisualization() {
   return (
     <div className="space-y-6">
       {/* Nutrient Depletion Chart */}
-      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 p-6">
+      <div className="group relative bg-white/40 dark:bg-gray-800/40 backdrop-blur-md rounded-xl shadow-lg border border-gray-200/50 dark:border-gray-700/50 p-6 overflow-hidden transition-all duration-300 hover:shadow-xl hover:border-gray-300/50 dark:hover:border-gray-600/50 hover:-translate-y-1">
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-50/50 to-white/50 dark:from-gray-900/10 dark:to-gray-800/10 -z-10" />
         <div className="mb-6">
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
             Nutrient Depletion Trends
@@ -110,7 +118,8 @@ export default function DataVisualization() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Moisture vs Temperature Chart */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 p-6">
+        <div className="group relative bg-white/40 dark:bg-gray-800/40 backdrop-blur-md rounded-xl shadow-lg border border-gray-200/50 dark:border-gray-700/50 p-6 overflow-hidden transition-all duration-300 hover:shadow-xl hover:border-gray-300/50 dark:hover:border-gray-600/50 hover:-translate-y-1">
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-50/50 to-white/50 dark:from-gray-900/10 dark:to-gray-800/10 -z-10" />
           <div className="mb-6">
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
               Moisture vs Temperature
@@ -155,7 +164,8 @@ export default function DataVisualization() {
         </div>
 
         {/* pH & EC Variance Chart */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 p-6">
+        <div className="group relative bg-white/40 dark:bg-gray-800/40 backdrop-blur-md rounded-xl shadow-lg border border-gray-200/50 dark:border-gray-700/50 p-6 overflow-hidden transition-all duration-300 hover:shadow-xl hover:border-gray-300/50 dark:hover:border-gray-600/50 hover:-translate-y-1">
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-50/50 to-white/50 dark:from-gray-900/10 dark:to-gray-800/10 -z-10" />
           <div className="mb-6">
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
               pH & EC Variance

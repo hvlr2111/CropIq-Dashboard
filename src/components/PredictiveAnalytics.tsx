@@ -35,17 +35,17 @@ export default function PredictiveAnalytics() {
   const getRiskBgColor = (level: string) => {
     switch (level) {
       case 'Critical':
-        return 'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-700';
+        return 'bg-red-50/50 dark:bg-red-900/10 border-red-200/50 dark:border-red-700/50 hover:shadow-red-500/20';
       case 'High':
-        return 'bg-orange-50 dark:bg-orange-900/20 border-orange-200 dark:border-orange-700';
+        return 'bg-orange-50/50 dark:bg-orange-900/10 border-orange-200/50 dark:border-orange-700/50 hover:shadow-orange-500/20';
       case 'Medium':
-        return 'bg-yellow-50 dark:bg-yellow-900/20 border-yellow-200 dark:border-yellow-700';
+        return 'bg-yellow-50/50 dark:bg-yellow-900/10 border-yellow-200/50 dark:border-yellow-700/50 hover:shadow-yellow-500/20';
       case 'Low':
-        return 'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-700';
+        return 'bg-blue-50/50 dark:bg-blue-900/10 border-blue-200/50 dark:border-blue-700/50 hover:shadow-blue-500/20';
       case 'Safe':
-        return 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-700';
+        return 'bg-green-50/50 dark:bg-green-900/10 border-green-200/50 dark:border-green-700/50 hover:shadow-green-500/20';
       default:
-        return 'bg-gray-50 dark:bg-gray-900/20 border-gray-200 dark:border-gray-700';
+        return 'bg-gray-50/50 dark:bg-gray-900/10 border-gray-200/50 dark:border-gray-700/50 hover:shadow-gray-500/20';
     }
   };
 
@@ -69,11 +69,12 @@ export default function PredictiveAnalytics() {
   return (
     <div className="space-y-6">
       {/* Waterlogging Risk Engine */}
-      <div className={`rounded-xl shadow-lg border-2 p-6 ${getRiskBgColor(analytics.waterloggingRisk.level)}`}>
+      <div className={`group relative backdrop-blur-md rounded-xl shadow-lg border p-6 overflow-hidden transition-all duration-300 hover:-translate-y-1 ${getRiskBgColor(analytics.waterloggingRisk.level)}`}>
+        <div className="absolute inset-0 bg-white/40 dark:bg-gray-800/40 -z-10" />
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center space-x-3">
-            <div className={`p-3 rounded-lg ${getRiskColor(analytics.waterloggingRisk.level)}`}>
-              <AlertTriangle className="h-6 w-6 text-white" />
+            <div className={`p-3 rounded-xl shadow-inner text-white group-hover:scale-110 transition-transform duration-300 ${getRiskColor(analytics.waterloggingRisk.level)}`}>
+              <AlertTriangle className="h-6 w-6" />
             </div>
             <div>
               <h3 className="text-xl font-bold text-gray-900 dark:text-white">
@@ -149,10 +150,11 @@ export default function PredictiveAnalytics() {
       {/* NPK Predictions */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* 7-Day Prediction */}
-        <div className="bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-900/20 dark:to-indigo-900/20 rounded-xl shadow-lg border border-purple-200 dark:border-purple-700 p-6">
+        <div className="group relative bg-white/40 dark:bg-gray-800/40 backdrop-blur-md rounded-xl shadow-lg border border-purple-200/50 dark:border-purple-700/50 p-6 overflow-hidden transition-all duration-300 hover:shadow-purple-500/20 hover:-translate-y-1">
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-50/50 to-indigo-50/50 dark:from-purple-900/10 dark:to-indigo-900/10 -z-10" />
           <div className="flex items-center space-x-3 mb-6">
-            <div className="p-3 bg-purple-500 rounded-lg">
-              <TrendingUp className="h-6 w-6 text-white" />
+            <div className="p-3 bg-gradient-to-br from-purple-400 to-indigo-600 rounded-xl shadow-inner text-white group-hover:scale-110 transition-transform duration-300">
+              <TrendingUp className="h-6 w-6" />
             </div>
             <div>
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
@@ -222,10 +224,11 @@ export default function PredictiveAnalytics() {
         </div>
 
         {/* 14-Day Prediction */}
-        <div className="bg-gradient-to-br from-cyan-50 to-teal-50 dark:from-cyan-900/20 dark:to-teal-900/20 rounded-xl shadow-lg border border-cyan-200 dark:border-cyan-700 p-6">
+        <div className="group relative bg-white/40 dark:bg-gray-800/40 backdrop-blur-md rounded-xl shadow-lg border border-cyan-200/50 dark:border-cyan-700/50 p-6 overflow-hidden transition-all duration-300 hover:shadow-cyan-500/20 hover:-translate-y-1">
+          <div className="absolute inset-0 bg-gradient-to-br from-cyan-50/50 to-teal-50/50 dark:from-cyan-900/10 dark:to-teal-900/10 -z-10" />
           <div className="flex items-center space-x-3 mb-6">
-            <div className="p-3 bg-cyan-500 rounded-lg">
-              <Activity className="h-6 w-6 text-white" />
+            <div className="p-3 bg-gradient-to-br from-cyan-400 to-teal-600 rounded-xl shadow-inner text-white group-hover:scale-110 transition-transform duration-300">
+              <Activity className="h-6 w-6" />
             </div>
             <div>
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white">

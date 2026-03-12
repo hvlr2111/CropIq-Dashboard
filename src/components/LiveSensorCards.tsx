@@ -7,7 +7,10 @@ import {
   TrendingUp, 
   TrendingDown,
   Activity,
-  Leaf
+  Leaf,
+  TestTube,
+  Sparkles,
+  Hexagon
 } from 'lucide-react';
 import { getLatestSoilData, getLatestAirData, getHistoricalData } from '@/data/mockData';
 
@@ -170,10 +173,11 @@ export default function LiveSensorCards() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {/* NPK Status Card */}
-      <div className="bg-gradient-to-br from-emerald-50 to-green-50 dark:from-emerald-900/20 dark:to-green-900/20 rounded-xl shadow-lg border border-emerald-200 dark:border-emerald-700 p-6">
+      <div className="group relative bg-white/40 dark:bg-gray-800/40 backdrop-blur-md rounded-xl shadow-lg border border-emerald-200/50 dark:border-emerald-700/50 p-6 overflow-hidden transition-all duration-300 hover:shadow-emerald-500/20 hover:-translate-y-1">
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/50 to-green-50/50 dark:from-emerald-900/10 dark:to-green-900/10 -z-10" />
         <div className="flex items-center space-x-3 mb-6">
-          <div className="p-3 bg-emerald-500 rounded-lg">
-            <Leaf className="h-6 w-6 text-white" />
+          <div className="p-3 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-xl shadow-inner text-white group-hover:scale-110 transition-transform duration-300">
+            <Leaf className="h-6 w-6" />
           </div>
           <div>
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
@@ -186,42 +190,48 @@ export default function LiveSensorCards() {
         </div>
         
         <div className="space-y-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <div className={`w-3 h-3 rounded-full ${
-                getNPKStatus(npkData.nitrogen, 'N') === 'optimal' ? 'bg-green-500' :
-                getNPKStatus(npkData.nitrogen, 'N') === 'warning' ? 'bg-yellow-500' : 'bg-red-500'
-              }`} />
+          <div className="flex items-center justify-between p-2 rounded-lg hover:bg-white/50 dark:hover:bg-gray-700/30 transition-colors">
+            <div className="flex items-center space-x-3">
+              <div className={`p-2 rounded-lg ${
+                getNPKStatus(npkData.nitrogen, 'N') === 'optimal' ? 'bg-green-100 dark:bg-green-900/50 text-green-600 dark:text-green-400' :
+                getNPKStatus(npkData.nitrogen, 'N') === 'warning' ? 'bg-yellow-100 dark:bg-yellow-900/50 text-yellow-600 dark:text-yellow-400' : 'bg-red-100 dark:bg-red-900/50 text-red-600 dark:text-red-400'
+              }`}>
+                <TestTube className="h-4 w-4" />
+              </div>
               <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Nitrogen</span>
             </div>
             <span className="text-lg font-bold text-gray-900 dark:text-white">
-              {npkData.nitrogen.toFixed(2)} <span className="text-sm text-gray-500">mg/kg</span>
+              {npkData.nitrogen.toFixed(2)} <span className="text-sm font-normal text-gray-500">mg/kg</span>
             </span>
           </div>
           
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <div className={`w-3 h-3 rounded-full ${
-                getNPKStatus(npkData.phosphorus, 'P') === 'optimal' ? 'bg-green-500' :
-                getNPKStatus(npkData.phosphorus, 'P') === 'warning' ? 'bg-yellow-500' : 'bg-red-500'
-              }`} />
+          <div className="flex items-center justify-between p-2 rounded-lg hover:bg-white/50 dark:hover:bg-gray-700/30 transition-colors">
+            <div className="flex items-center space-x-3">
+              <div className={`p-2 rounded-lg ${
+                getNPKStatus(npkData.phosphorus, 'P') === 'optimal' ? 'bg-green-100 dark:bg-green-900/50 text-green-600 dark:text-green-400' :
+                getNPKStatus(npkData.phosphorus, 'P') === 'warning' ? 'bg-yellow-100 dark:bg-yellow-900/50 text-yellow-600 dark:text-yellow-400' : 'bg-red-100 dark:bg-red-900/50 text-red-600 dark:text-red-400'
+              }`}>
+                <Sparkles className="h-4 w-4" />
+              </div>
               <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Phosphorus</span>
             </div>
             <span className="text-lg font-bold text-gray-900 dark:text-white">
-              {npkData.phosphorus.toFixed(2)} <span className="text-sm text-gray-500">mg/kg</span>
+              {npkData.phosphorus.toFixed(2)} <span className="text-sm font-normal text-gray-500">mg/kg</span>
             </span>
           </div>
           
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <div className={`w-3 h-3 rounded-full ${
-                getNPKStatus(npkData.potassium, 'K') === 'optimal' ? 'bg-green-500' :
-                getNPKStatus(npkData.potassium, 'K') === 'warning' ? 'bg-yellow-500' : 'bg-red-500'
-              }`} />
+          <div className="flex items-center justify-between p-2 rounded-lg hover:bg-white/50 dark:hover:bg-gray-700/30 transition-colors">
+            <div className="flex items-center space-x-3">
+              <div className={`p-2 rounded-lg ${
+                getNPKStatus(npkData.potassium, 'K') === 'optimal' ? 'bg-green-100 dark:bg-green-900/50 text-green-600 dark:text-green-400' :
+                getNPKStatus(npkData.potassium, 'K') === 'warning' ? 'bg-yellow-100 dark:bg-yellow-900/50 text-yellow-600 dark:text-yellow-400' : 'bg-red-100 dark:bg-red-900/50 text-red-600 dark:text-red-400'
+              }`}>
+                <Hexagon className="h-4 w-4" />
+              </div>
               <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Potassium</span>
             </div>
             <span className="text-lg font-bold text-gray-900 dark:text-white">
-              {npkData.potassium.toFixed(2)} <span className="text-sm text-gray-500">mg/kg</span>
+              {npkData.potassium.toFixed(2)} <span className="text-sm font-normal text-gray-500">mg/kg</span>
             </span>
           </div>
         </div>
@@ -241,10 +251,11 @@ export default function LiveSensorCards() {
       </div>
 
       {/* Soil Health Card */}
-      <div className="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 rounded-xl shadow-lg border border-amber-200 dark:border-amber-700 p-6">
+      <div className="group relative bg-white/40 dark:bg-gray-800/40 backdrop-blur-md rounded-xl shadow-lg border border-amber-200/50 dark:border-amber-700/50 p-6 overflow-hidden transition-all duration-300 hover:shadow-amber-500/20 hover:-translate-y-1">
+        <div className="absolute inset-0 bg-gradient-to-br from-amber-50/50 to-orange-50/50 dark:from-amber-900/10 dark:to-orange-900/10 -z-10" />
         <div className="flex items-center space-x-3 mb-6">
-          <div className="p-3 bg-amber-500 rounded-lg">
-            <Droplets className="h-6 w-6 text-white" />
+          <div className="p-3 bg-gradient-to-br from-amber-400 to-amber-600 rounded-xl shadow-inner text-white group-hover:scale-110 transition-transform duration-300">
+            <Droplets className="h-6 w-6" />
           </div>
           <div>
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
@@ -257,19 +268,23 @@ export default function LiveSensorCards() {
         </div>
         
         <div className="space-y-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <Droplets className="h-4 w-4 text-blue-500" />
+          <div className="flex items-center justify-between p-2 rounded-lg hover:bg-white/50 dark:hover:bg-gray-700/30 transition-colors">
+            <div className="flex items-center space-x-3">
+              <div className="p-2 bg-blue-100 dark:bg-blue-900/50 rounded-lg text-blue-600 dark:text-blue-400">
+                <Droplets className="h-4 w-4" />
+              </div>
               <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Moisture</span>
             </div>
             <span className="text-lg font-bold text-gray-900 dark:text-white">
-              {soilHealthData.moisture.toFixed(2)} <span className="text-sm text-gray-500">%</span>
+              {soilHealthData.moisture.toFixed(2)} <span className="text-sm font-normal text-gray-500">%</span>
             </span>
           </div>
           
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <Activity className="h-4 w-4 text-purple-500" />
+          <div className="flex items-center justify-between p-2 rounded-lg hover:bg-white/50 dark:hover:bg-gray-700/30 transition-colors">
+            <div className="flex items-center space-x-3">
+              <div className="p-2 bg-purple-100 dark:bg-purple-900/50 rounded-lg text-purple-600 dark:text-purple-400">
+                <Activity className="h-4 w-4" />
+              </div>
               <span className="text-sm font-medium text-gray-700 dark:text-gray-300">pH Level</span>
             </div>
             <span className="text-lg font-bold text-gray-900 dark:text-white">
@@ -277,13 +292,15 @@ export default function LiveSensorCards() {
             </span>
           </div>
           
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <Zap className="h-4 w-4 text-yellow-500" />
+          <div className="flex items-center justify-between p-2 rounded-lg hover:bg-white/50 dark:hover:bg-gray-700/30 transition-colors">
+            <div className="flex items-center space-x-3">
+              <div className="p-2 bg-yellow-100 dark:bg-yellow-900/50 rounded-lg text-yellow-600 dark:text-yellow-400">
+                <Zap className="h-4 w-4" />
+              </div>
               <span className="text-sm font-medium text-gray-700 dark:text-gray-300">EC</span>
             </div>
             <span className="text-lg font-bold text-gray-900 dark:text-white">
-              {soilHealthData.ec.toFixed(2)} <span className="text-sm text-gray-500">mS/cm</span>
+              {soilHealthData.ec.toFixed(2)} <span className="text-sm font-normal text-gray-500">mS/cm</span>
             </span>
           </div>
         </div>
@@ -303,10 +320,11 @@ export default function LiveSensorCards() {
       </div>
 
       {/* Climate Card */}
-      <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-xl shadow-lg border border-blue-200 dark:border-blue-700 p-6">
+      <div className="group relative bg-white/40 dark:bg-gray-800/40 backdrop-blur-md rounded-xl shadow-lg border border-blue-200/50 dark:border-blue-700/50 p-6 overflow-hidden transition-all duration-300 hover:shadow-blue-500/20 hover:-translate-y-1">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-cyan-50/50 dark:from-blue-900/10 dark:to-cyan-900/10 -z-10" />
         <div className="flex items-center space-x-3 mb-6">
-          <div className="p-3 bg-blue-500 rounded-lg">
-            <Thermometer className="h-6 w-6 text-white" />
+          <div className="p-3 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl shadow-inner text-white group-hover:scale-110 transition-transform duration-300">
+            <Thermometer className="h-6 w-6" />
           </div>
           <div>
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
@@ -319,33 +337,39 @@ export default function LiveSensorCards() {
         </div>
         
         <div className="space-y-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <Thermometer className="h-4 w-4 text-orange-500" />
+          <div className="flex items-center justify-between p-2 rounded-lg hover:bg-white/50 dark:hover:bg-gray-700/30 transition-colors">
+            <div className="flex items-center space-x-3">
+              <div className="p-2 bg-orange-100 dark:bg-orange-900/50 rounded-lg text-orange-600 dark:text-orange-400">
+                <Thermometer className="h-4 w-4" />
+              </div>
               <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Soil Temp</span>
             </div>
             <span className="text-lg font-bold text-gray-900 dark:text-white">
-              {climateData.soilTemp.toFixed(2)} <span className="text-sm text-gray-500">°C</span>
+              {climateData.soilTemp.toFixed(2)} <span className="text-sm font-normal text-gray-500">°C</span>
             </span>
           </div>
           
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <Thermometer className="h-4 w-4 text-red-500" />
+          <div className="flex items-center justify-between p-2 rounded-lg hover:bg-white/50 dark:hover:bg-gray-700/30 transition-colors">
+            <div className="flex items-center space-x-3">
+              <div className="p-2 bg-red-100 dark:bg-red-900/50 rounded-lg text-red-600 dark:text-red-400">
+                <Thermometer className="h-4 w-4" />
+              </div>
               <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Air Temp</span>
             </div>
             <span className="text-lg font-bold text-gray-900 dark:text-white">
-              {climateData.airTemp.toFixed(2)} <span className="text-sm text-gray-500">°C</span>
+              {climateData.airTemp.toFixed(2)} <span className="text-sm font-normal text-gray-500">°C</span>
             </span>
           </div>
           
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <Droplets className="h-4 w-4 text-cyan-500" />
+          <div className="flex items-center justify-between p-2 rounded-lg hover:bg-white/50 dark:hover:bg-gray-700/30 transition-colors">
+            <div className="flex items-center space-x-3">
+              <div className="p-2 bg-cyan-100 dark:bg-cyan-900/50 rounded-lg text-cyan-600 dark:text-cyan-400">
+                <Droplets className="h-4 w-4" />
+              </div>
               <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Air Humidity</span>
             </div>
             <span className="text-lg font-bold text-gray-900 dark:text-white">
-              {climateData.airHumidity.toFixed(2)} <span className="text-sm text-gray-500">%</span>
+              {climateData.airHumidity.toFixed(2)} <span className="text-sm font-normal text-gray-500">%</span>
             </span>
           </div>
         </div>
