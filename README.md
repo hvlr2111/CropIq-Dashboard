@@ -1,36 +1,158 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CropIQ - Smart Soil Health Monitoring Dashboard
 
-## Getting Started
+A modern, responsive KPI dashboard for precision agriculture that uses IoT field sensors and Machine Learning to predict NPK levels and prevent waterlogging risks.
 
-First, run the development server:
+## 🌟 Features
 
+### 📊 Live Sensor Monitoring
+- **NPK Status**: Real-time nitrogen, phosphorus, and potassium levels with color-coded indicators
+- **Soil Health**: Live moisture %, pH level, and electrical conductivity (EC) readings
+- **Climate Data**: Soil temperature, air temperature, and humidity monitoring
+- **Trend Analysis**: Real-time trend indicators showing changes from previous readings
+
+### 🔮 Predictive Analytics
+- **Waterlogging Risk Engine**: Advanced risk assessment with 5-level alert system (Safe/Low/Medium/High/Critical)
+- **Time-to-Event Predictions**: Countdown to critical saturation events
+- **NPK Forecasting**: 7-day and 14-day nutrient predictions with confidence levels
+- **Action Recommendations**: System-generated recommendations based on current conditions
+
+### 📈 Data Visualization
+- **Nutrient Depletion Charts**: 24-hour historical trends for N, P, K levels
+- **Moisture vs Temperature**: Correlation analysis with synchronized charts
+- **pH & EC Variance**: Stability tracking with bar and area charts
+- **Interactive Tooltips**: Detailed information on hover
+
+### 🎨 Modern UI/UX
+- **Dark/Light Mode**: Seamless theme switching with system preference detection
+- **Responsive Design**: Optimized for desktop and tablet use in field conditions
+- **Glassmorphism Design**: Modern aesthetic with subtle shadows and rounded cards
+- **Agriculture-Inspired Palette**: Emerald greens, earthy tones, and clean colors
+
+## 🛠️ Tech Stack
+
+- **Framework**: Next.js 16 with TypeScript and App Router
+- **Styling**: Tailwind CSS v4 with custom theme configuration
+- **Charts**: Recharts for interactive data visualization
+- **Icons**: Lucide React for consistent iconography
+- **Data Structure**: Firebase Realtime Database compatible JSON format
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
+
+### Installation
+
+1. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+2. **Run the development server**
+   ```bash
+   npm run dev
+   ```
+
+3. **Open your browser**
+   Navigate to [http://localhost:3000](http://localhost:3000)
+
+### Build for Production
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run build
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📊 Data Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The dashboard is designed to work with Firebase Realtime Database using the following JSON structure:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```json
+{
+  "air_data": {
+    "history": {
+      "reading_0": {
+        "humidity_pct": 81.5,
+        "temperature_c": 25.5,
+        "timestamp": "2026-02-20 00:25:14",
+        "date": "2026-02-20"
+      }
+    }
+  },
+  "soil_data": {
+    "history": {
+      "reading_0": {
+        "ec_mscm": 0.32,
+        "moisture_pct": 14.8,
+        "nitrogen_mgkg": 37.6,
+        "phosphorus_mgkg": 29.2,
+        "potassium_mgkg": 84.0,
+        "pH": 4.9,
+        "temperature_c": 3.4,
+        "timestamp": "2026-02-20 00:25:14",
+        "date": "2026-02-20"
+      }
+    }
+  }
+}
+```
 
-## Learn More
+## 🎯 Key Features Explained
 
-To learn more about Next.js, take a look at the following resources:
+### Waterlogging Risk Algorithm
+The risk calculation considers:
+- **Soil Moisture**: Higher moisture increases risk
+- **Electrical Conductivity**: High EC indicates water saturation
+- **Temperature**: Low temperatures slow evaporation
+- **Randomization**: Adds realistic variation
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### NPK Prediction Model
+Uses linear trend analysis:
+- **Historical Analysis**: Last 6 readings for trend calculation
+- **Future Projection**: Extends trends for 7/14 day forecasts
+- **Confidence Scoring**: Decreases with prediction distance
+- **Minimum Thresholds**: Prevents unrealistic negative values
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📱 Project Structure
 
-## Deploy on Vercel
+```
+src/
+├── app/                    # Next.js App Router pages
+│   ├── analytics/         # Analytics page
+│   ├── alerts/           # Alerts page
+│   ├── settings/         # Settings page
+│   ├── globals.css       # Global styles and Tailwind config
+│   ├── layout.tsx        # Root layout with dark mode support
+│   └── page.tsx          # Main dashboard page
+├── components/            # Reusable React components
+│   ├── Header.tsx         # Header with clock and theme toggle
+│   ├── Sidebar.tsx       # Navigation sidebar with quick stats
+│   ├── LiveSensorCards.tsx # KPI cards for live readings
+│   ├── PredictiveAnalytics.tsx # Waterlogging and NPK predictions
+│   └── DataVisualization.tsx # Charts and graphs
+└── data/                 # Data management and analytics
+    ├── mockData.ts       # Mock Firebase data structure
+    └── analytics.ts      # Prediction algorithms and calculations
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🎨 Design System
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Color Palette
+- **Primary**: Emerald green (#10b981) for agriculture theme
+- **Secondary**: Blue (#3b82f6) for water/moisture
+- **Accent**: Orange/Amber for temperature and warnings
+- **Neutral**: Gray scales for text and backgrounds
+
+## 🚧 Future Enhancements
+
+- [ ] Real Firebase integration
+- [ ] Mobile-responsive sidebar
+- [ ] Historical data export
+- [ ] Custom alert thresholds
+- [ ] Multi-field support
+- [ ] Weather API integration
+- [ ] ML model improvements
+
+---
+
+**CropIQ** - Empowering precision agriculture with intelligent soil health monitoring 🌱
